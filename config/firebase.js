@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, getReactNativePersistence } from 'firebase/auth';
+import { getAuth, initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_API_KEY || "AIzaSyCp7QF3XdCtnxNxqZiuRfCb1Om3LqH2GPQ",
@@ -13,39 +14,18 @@ const firebaseConfig = {
   measurementId: "G-78NYYX1B6E"
 };
 
-let app;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
 let auth;
-let db;
-
-try {
-  // Initialize Firebase if it hasn't been initialized yet
-  if (!app) {
-    app = initializeApp(firebaseConfig);
-  }
-
-  // Initialize Auth with persistence, wrapped in try-catch to handle potential errors
-  try {
-    auth = initializeAuth(app, {
-      persistence: getReactNativePersistence(AsyncStorage)
-    });
-  } catch (error) {
-    // If auth is already initialized, get the existing instance
-    if (error.code === 'auth/already-initialized') {
-      auth = getAuth(app);
-    } else {
-      console.error('Auth initialization error:', error);
-      throw error;
-    }
-  }
-
-  // Initialize Firestore
-  if (!db) {
-    db = getFirestore(app);
-  }
-
-} catch (error) {
-  console.error('Firebase initialization error:', error);
-  throw error;
+if (Platform.OS === 'android' || Platform.OS === 'ios') {
+  // Use initializeAuth for native platforms
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
+} else {
+  // Use getAuth for web platforms (Expo Go)
+  auth = getAuth(app);
 }
 
-export { app, auth, db };
+export { auth };
