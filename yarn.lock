@@ -3072,7 +3072,7 @@ buffer@^5.4.3:
 
 build@^0.1.4:
   version "0.1.4"
-  resolved "https://registry.npmjs.org/build/-/build-0.1.4.tgz"
+  resolved "https://registry.yarnpkg.com/build/-/build-0.1.4.tgz#707fe026ffceddcacbfdcdf356eafda64f151046"
   integrity sha512-KwbDJ/zrsU8KZRRMfoURG14cKIAStUlS8D5jBDvtrZbwO5FEkYqc3oB8HIhRiyD64A48w1lc+sOmQ+mmBw5U/Q==
   dependencies:
     cssmin "0.3.x"
@@ -3638,7 +3638,7 @@ dotenv@^16.4.4, dotenv@^16.4.5, dotenv@~16.4.5:
 
 eas@^0.1.0:
   version "0.1.0"
-  resolved "https://registry.npmjs.org/eas/-/eas-0.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/eas/-/eas-0.1.0.tgz#cc3c1d8f1aa9439a873670440cf946af1c5707b4"
   integrity sha512-w88fTTTkfDLHwcaVW8wiYjOtnBBToguzc6AyIldD1vOrCRTKxhQEDS8oIE7nWeSJ+kCoIeoHd79Mhwvntydixg==
 
 eastasianwidth@^0.2.0:
